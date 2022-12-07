@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import fetch from "node-fetch-commonjs";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (_: NextApiRequest, res: NextApiResponse) => {
 
     const API_KEY = process.env.NEXT_PUBLIC_GITHUB_TOEKN;
 
