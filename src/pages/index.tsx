@@ -1,8 +1,9 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
 import Container from 'components/Container'
 import DarkModeSwitch from 'components/DarkModeSwitch'
 import OrganizationCard from "components/OrganizationCard";
 import { Organization } from "components/OrganizationCard/type";
+import Head from "next/head";
 import { useEffect, useState } from "react";
 
 const Index = () => {
@@ -71,39 +72,48 @@ const Index = () => {
   }, []);
 
   return (
-    <Container height="100vh">
-      <DarkModeSwitch />
+    <>
+      <Head>
+        <title>Random pick organization</title>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+      </Head>
+      <Container height="100vh">
+        <DarkModeSwitch />
 
-      <Box display="flex" justifyContent="center" alignItems="center" h="100vh" w={"60%"}>
-        <Box display="flex" flexDirection="column" minWidth={"100%"}>
-          {orgs[currentIndex] ?
-            <OrganizationCard
-              organization={orgs[currentIndex]}
-            />
-            :
-            <></>
-          }
-          <Box display="flex" justifyContent="center" m="3rem">
-            <Button
-              disabled={buttonState.prev}
-              onClick={OnClickPrev}
-              p="2rem"
-              m="2rem"
-              size='lg'
-              variant='outline'
-            >Prev</Button>
-            <Button
-              disabled={buttonState.next}
-              onClick={OnClickNext}
-              p="2rem"
-              m="2rem"
-              colorScheme='teal'
-              size='lg'
-            >{orgs.length == LIMIT ? "LIMIT" : "Feel the destiny"}</Button>
+        <Box display="flex" justifyContent="center" p="8%">
+          <Text as="b" fontSize='5xl'>Github random pick organization</Text>
+        </Box>
+        <Box display="flex" justifyContent="center" alignItems="center" w={"60%"}>
+          <Box display="flex" flexDirection="column" minWidth={"100%"}>
+            {orgs[currentIndex] ?
+              <OrganizationCard
+                organization={orgs[currentIndex]}
+              />
+              :
+              <></>
+            }
+            <Box display="flex" justifyContent="center" m="3rem">
+              <Button
+                disabled={buttonState.prev}
+                onClick={OnClickPrev}
+                p="2rem"
+                m="2rem"
+                size='lg'
+                variant='outline'
+              >Prev</Button>
+              <Button
+                disabled={buttonState.next}
+                onClick={OnClickNext}
+                p="2rem"
+                m="2rem"
+                colorScheme='teal'
+                size='lg'
+              >{orgs.length == LIMIT ? "LIMIT" : "Feel the destiny"}</Button>
+            </Box>
           </Box>
         </Box>
-      </Box>
-    </Container>
+      </Container>
+    </>
   )
 };
 
